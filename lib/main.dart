@@ -1,3 +1,4 @@
+import 'package:curd_intern/SplashScreen.dart';
 import 'package:curd_intern/To_do.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ToDoList(),
+      home: SplashScreen(),
     );
   }
 }
