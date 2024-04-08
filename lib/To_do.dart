@@ -35,11 +35,41 @@ class _ToDoListState extends State<ToDoList> {
 
             return ListTile(
               title: Text(todo),
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {
-                  box.deleteAt(index);
-                },
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Update to-do item'),
+                            content: TextField(
+                              controller: _textController..text = todo,
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('Update'),
+                                onPressed: () {
+                                  box.putAt(index, _textController.text);
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      box.deleteAt(index);
+                    },
+                  ),
+                ],
               ),
             );
           },
